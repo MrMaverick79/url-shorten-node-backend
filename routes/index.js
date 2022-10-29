@@ -4,6 +4,7 @@ const router = express.Router();
 
 //This get request uses the urlId in the params to find the url 
 router.get('/:urlId', async( req, res)=> {
+    console.log('A request has been made to look up the shortened url', req.params.urlId);
     
     try{
         const url = await Url.findOne({ urlId: req.params.urlId});
@@ -11,7 +12,7 @@ router.get('/:urlId', async( req, res)=> {
             if ( url ){
                 await Url.updateOne(
                     {
-                        urlId: params.urlId
+                        urlId: req.params.urlId
                     },
                     { $inc: {clicks: 1}}
                 );
@@ -22,8 +23,8 @@ router.get('/:urlId', async( req, res)=> {
                 
 
         } catch (err){
-            console.log('There has been an error retreiving the url', err);
-            res.status( 500 ).json('Server error - index.js')
+            console.log('There has been an error retrieving the url', err);
+            res.status( 500 ).json('Server error while attempting to retrieve that url - index.js')
         }
     
 });

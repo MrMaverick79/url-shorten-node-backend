@@ -7,6 +7,10 @@
 import express from 'express';
 const app = express();
 
+//----------CORS------------//
+import cors from 'cors';
+app.use(cors());
+
 // Body Parser
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -22,16 +26,14 @@ import dotenv from 'dotenv';
 dotenv.config({ path: './.env' });
 
 // Connect to PORT
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8000;
 
 
 app.listen(PORT, ()=> {
     console.log(`Server listening at  PORT :${PORT}`);
 });
 
-//----------CORS------------//
-import cors from 'cors';
-app.use(cors());
+
 
 //------------MONGOOSE DB Initialization-----//
 //My Atals connection is done in this file

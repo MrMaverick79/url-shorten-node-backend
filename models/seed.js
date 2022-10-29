@@ -4,7 +4,7 @@ import mongoose from 'mongoose';
 
 //Connecting mongoose to the DB
 
-mongoose.connect(process.env.NODE_ENV="development" ? 'mongodb://127.0.0.1/url': "ATLAS" );
+mongoose.connect(process.env.MONGODB_URI);
 
 const db = mongoose.connection;
 
@@ -16,9 +16,9 @@ db.on('error', err=> {
 db.once('open', async()=> {
     console.log('Success! DB connected');
 
-    //TODO: Once models created
-
-    // await Url.deleteMany()
+   
+    //Delete any current urls
+    await Url.deleteMany()
 
     //...create
 

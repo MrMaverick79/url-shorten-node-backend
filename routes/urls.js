@@ -15,7 +15,7 @@ router.post('/short', async (req, res) => {
 
     const urlId= nanoid(8); //This will create an ID with length of 8
 
-    if(utils.validateUrl(originalUrl)){
+    if(validateUrl(originalUrl)){
         try{
             let url = await Url.findOne ({ originalUrl });
             if ( url ){
