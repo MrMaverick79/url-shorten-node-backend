@@ -1,6 +1,10 @@
 import mongoose from 'mongoose';
 
-//Require models here
+//Require models
+import Url from './Url.js'
+
+import dotenv from 'dotenv';
+dotenv.config({ path: './.env' });
 
 //Connecting mongoose to the DB
 
